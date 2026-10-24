@@ -1,0 +1,6 @@
+{
+  "Id": "single-folder",
+  "Names": {"ja": "単一フォルダ（サンプル）", "en": "Single folder (sample)"},
+  "Input": "folder",
+  "Script": "SingleFolder.ps1"
+}

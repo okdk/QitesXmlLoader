@@ -1,0 +1,6 @@
+{
+  "Id": "itunes",
+  "Names": {"ja": "iTunes XML（標準）", "en": "iTunes XML (default)"},
+  "Input": "xml",
+  "Script": "ITunesXml.ps1"
+}
