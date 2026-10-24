@@ -1,0 +1,31 @@
+name: Windows build and synthetic tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Restore pinned dependencies and build without FFmpeg
+        shell: powershell
+        run: .\scripts\Build.ps1
+      - name: Run synthetic tests without an audio device
+        shell: powershell
+        run: .\tests\Test.ps1 -NoAudio
+      - name: Test library filename recovery and folder sources
+        shell: powershell
+        run: |
+          .\tests\Test-FileCheck.ps1
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          .\tests\Test-Sources.ps1
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          .\tests\Test-Unlink.ps1
+      - name: Test Python JSON Lines integration
+        shell: powershell
+        run: python .\tests\test_pipe.py
