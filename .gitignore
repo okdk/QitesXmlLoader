@@ -1,0 +1,15 @@
+/build/
+/dist/
+/.dependencies/
+/.publication/
+/test-output/
+/src/lib/*.dll
+*.pdb
+*.log
+*.cache
+*.partial
+settings.json
+install-receipt.json
+*.user
+.vs/
+.env
